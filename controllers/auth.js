@@ -13,13 +13,65 @@ exports.register = async (req, res, next) => {
       password,
     });
 
-    sendToken(user, 201, res);
+    const verifyToken = user.getVerifyToken();
+
+    await user.save();
+
+    const verifyUrl = `${process.env.CLIENT_URL}/verify/${verifyToken}`;
+
+    const message = `
+    <h1>Please Verify Your Account!</h1>
+    <p>Please go to this link to verify your account</p>
+    <a href=${verifyUrl} clicktracking=off>${verifyUrl}</a>
+  `;
+
+    try {
+      await sendEmail({
+        to: user.email,
+        subject: "Verify Account",
+        text: message,
+      });
+
+      res.status(200).json({ success: true, data: "Email Sent" });
+    } catch (error) {
+      return next(new ErrorResponse("Email could not be sent", 500));
+    }
+
+    // sendToken(user, 201, res);
   } catch (error) {
     next(error);
   }
 };
 
-exports.verify = async (req, res, next) => {};
+exports.verify = async (req, res, next) => {
+  const verifyToken = crypto
+    .createHash("sha256")
+    .update(req.params.verifyToken)
+    .digest("hex");
+
+  try {
+    const user = await User.findOne({
+      verifyToken,
+    });
+
+    if (!user) {
+      return next(new ErrorResponse("Invalid Verify Token", 400));
+    }
+
+    if (user.verified) {
+      return next(new ErrorResponse("User Already Verified", 400));
+    }
+
+    user.verified = true;
+    user.verifyToken = undefined;
+
+    await user.save();
+
+    res.status(201).json({ success: true, data: "Verify Success" });
+  } catch (err) {
+    next(err);
+  }
+};
 
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
@@ -39,6 +91,10 @@ exports.login = async (req, res, next) => {
 
     if (!isMatch) {
       return next(new ErrorResponse("Invalid credentials", 404));
+    }
+
+    if (!user.verified) {
+      return next(new ErrorResponse("Account Not Verified", 404));
     }
 
     sendToken(user, 200, res);
@@ -61,7 +117,7 @@ exports.forgotpassword = async (req, res, next) => {
 
     await user.save();
 
-    const resetUrl = `${process.env.CLIENT_URL}/passwordreset/${resetToken}`;
+    const resetUrl = `${process.env.CLIENT_URL}/resetpassword/${resetToken}`;
 
     const message = `
       <h1>You have requested a password reset</h1>

@@ -1,0 +1,196 @@
+/* Sidebar Options */
+.sidebarOption {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 60px;
+}
+
+.sidebarOption:hover {
+  background-color: var(--background-color);
+  border-radius: 30px;
+  color: var(--accent-color);
+  transition: color 100ms ease-out;
+}
+
+.sidebarOption > svg {
+  font-size: 25px;
+  padding: 0 25px;
+}
+
+.sidebarOption > h2 {
+  font-weight: 800;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.sidebarOption--active {
+  color: var(--accent-color);
+}
+
+/* Feed Header */
+.feed_header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+  border-bottom: 1px solid var(--background-color);
+  padding: 15px 20px;
+}
+
+.feed_header > h2 {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* Search Bar */
+.searchbar {
+  display: flex;
+  align-items: center;
+  height: 45px;
+  padding: 0 25px;
+  background-color: var(--background-color);
+  border-radius: 30px;
+  margin-top: 5px;
+}
+
+.searchbar > input {
+  border: none;
+  outline: none;
+  background-color: var(--background-color);
+  width: 100%;
+  font-size: 16px;
+  color: var(--accent-color);
+}
+
+.searchbar > .searchbar__icon {
+  margin-right: 10px;
+  font-size: 20px;
+  color: var(--accent-color);
+}
+
+/* Post */
+.post {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--background-color);
+  padding-bottom: 10px;
+}
+
+.post__body {
+  flex: 1;
+  padding: 10px;
+}
+
+.post__body > img {
+  border-radius: 20px;
+  width: 100%;
+}
+
+.post__foter {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.post__foter .MuiSvgIcon-root {
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 20px !important;
+}
+
+.post__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right > svg {
+  padding: 10px;
+  border-radius: 50px;
+}
+
+.right > svg:hover {
+  background-color: var(--background-color);
+}
+
+.post__headerDescription > h3 {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.post__headerText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.post__headerText > h3 {
+  font-size: 15px;
+  margin-bottom: 3px;
+}
+
+h4,
+span.dot,
+span.timestamp {
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.post__headerText span.dot,
+.post__headerText span.timestamp {
+  margin-left: 2px;
+  margin-right: 2px;
+  color: #536572;
+}
+
+.post__headerText > h4 {
+  font-size: 14px;
+  margin-left: 5px;
+  color: #536572;
+}
+
+.post__badge {
+  font-size: 14px !important;
+  color: var(--accent-color);
+  margin-left: 5px;
+}
+
+.post__avatar {
+  padding: 10px;
+}
+
+.post__avatar .MuiAvatar-root {
+  width: 50px;
+  height: 50px;
+}
+
+.post__likes,
+.post__dislikes {
+  display: flex;
+  align-items: center;
+}
+
+.post__icons {
+  padding: 10px;
+  border-radius: 50px;
+}
+
+.post__icon:hover {
+  background-color: var(--background-color);
+  color: var(--accent-color);
+  transition: 100ms color ease-out;
+}
+
+.post__icon_thubs_up:hover {
+  background-color: #0572e649;
+}
+
+.post__icon_thubs_down:hover {
+  background-color: #e719464b;
+}
+
+.post__icon_bookmark:hover {
+  background-color: #ffd6423a;
+}
