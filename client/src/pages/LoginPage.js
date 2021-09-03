@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import "./styles.css";
+import { useHistory } from "react-router-dom";
+import {
+  CustomTextField,
+  CustomButton,
+  AuthRedirectLink,
+  AuthError,
+} from "../components/";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -39,39 +46,42 @@ function LoginPage() {
       setError(error.response.data.error);
       setTimeout(() => {
         setError("");
-      }, 5000);
+      }, 3000);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={loginHandler}>
-        <h3>Login</h3>
-        {error && <span>{error}</span>}
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            required
-            placeholder="Enter Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            required
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Login</button>
-        <span>Don't Have an Account?</span> <Link to="/register">Register</Link>
+    <div className="login">
+      <form className="login__form" onSubmit={loginHandler}>
+        <h3 className="login__title">Login</h3>
+        {error && <AuthError error={error} />}
+        <CustomTextField
+          type="email"
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          autoFocus
+          size="small"
+          required
+        />
+        <CustomTextField
+          type="password"
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          size="small"
+          required
+        />
+        <CustomButton text="Login" />
+        <AuthRedirectLink path="/forgotpassword" text="Forgot Password?" />
+        <AuthRedirectLink
+          path="/register"
+          text="Don't Have an Account? Sign Up"
+        />
       </form>
     </div>
   );

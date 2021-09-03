@@ -2,13 +2,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
 :root {
-  --accent-color: #dc4c40;
+  --accent-color: #e71945;
   --background-color: #e7e7e8;
 }
 
 * {
   padding: 0;
   margin: 0;
-  /* font-family: "Work Sans", sans-serif; */
-  font-family: "Poppins", sans-serif;
+  font-family: "Work Sans", sans-serif !important;
+  /* font-family: "Poppins", sans-serif !important; */
 }

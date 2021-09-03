@@ -157,15 +157,6 @@ span.timestamp {
   margin-left: 5px;
 }
 
-.post__avatar {
-  padding: 10px;
-}
-
-.post__avatar .MuiAvatar-root {
-  width: 50px;
-  height: 50px;
-}
-
 .post__likes,
 .post__dislikes {
   display: flex;
@@ -193,4 +184,40 @@ span.timestamp {
 
 .post__icon_bookmark:hover {
   background-color: #ffd6423a;
+}
+
+/* Custom Button */
+.custom_button .MuiButtonBase-root {
+  margin-bottom: 10px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 5px;
+}
+
+.custom_button .noMargin {
+  margin-bottom: 0;
+}
+
+.custom_button .MuiButtonBase-root:hover {
+  background-color: var(--accent-color);
+}
+
+/* Auth Redirect Link */
+.auth__redirect {
+  font-size: 14px;
+  color: var(--accent-color);
+}
+
+/* Auth Error */
+.login__error {
+  margin-bottom: 15px;
+  font-size: 14px;
+  background-color: var(--accent-color);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.login__sucess {
+  background-color: chartreuse;
 }

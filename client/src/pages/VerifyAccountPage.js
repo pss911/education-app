@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import "./styles.css";
+import { CustomButton, AuthError } from "../components/";
 import { useParams } from "react-router-dom";
 
 function VerifyAccountPage() {
@@ -28,16 +29,12 @@ function VerifyAccountPage() {
   };
 
   return (
-    <div>
-      <h3>Verify Account</h3>
-      {error && <span>{error}</span>}
-      {success && (
-        <span>
-          {success} <Link to="/login">Login</Link>
-        </span>
-      )}
-      <form onSubmit={verifyHandler}>
-        <button type="submit">Verify Account</button>
+    <div className="verify">
+      <form className="verify__form" onSubmit={verifyHandler}>
+        <h3 className="verify__title">Verify Account</h3>
+        {error && <AuthError error={error} />}
+        {success && <AuthError isError={false} error={success} />}
+        <CustomButton text="Verify Account" />
       </form>
     </div>
   );

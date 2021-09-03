@@ -1,7 +1,13 @@
-import { useParams } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router";
+import "./styles.css";
+import {
+  CustomTextField,
+  CustomButton,
+  AuthRedirectLink,
+  AuthError,
+} from "../components/";
 
 function ResetPasswordPage() {
   const [password, setPassword] = useState("");
@@ -47,39 +53,34 @@ function ResetPasswordPage() {
   };
 
   return (
-    <div>
-      <form onSubmit={resetPasswordHandler}>
-        <h3>Reset Password</h3>
-        {error && <span>{error}</span>}
-        {success && (
-          <span>
-            {success} <Link to="/login">Login</Link>
-          </span>
-        )}
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            required
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="confirm_password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            required
-            placeholder="Enter Password Again"
-            value={confirm_password}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Change Password</button>
-        <span>Remember your Password?</span> <Link to="/login">Login</Link>
+    <div className="resetpassword">
+      <form className="resetpassword__form" onSubmit={resetPasswordHandler}>
+        <h3 className="resetpassword__title">Reset Password</h3>
+        {error && <AuthError error={error} />}
+        {success && <AuthError isError={false} error={success} />}
+        <CustomTextField
+          type="password"
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          size="small"
+          required
+          autoFocus
+        />
+        <CustomTextField
+          type="password"
+          id="outlined-basic"
+          label="Confirm Password"
+          variant="outlined"
+          value={confirm_password}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          size="small"
+          required
+        />
+        <CustomButton text="Change Password" />
+        <AuthRedirectLink text="Remember your Password? Login" path="/login" />
       </form>
     </div>
   );

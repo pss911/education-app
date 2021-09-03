@@ -1,26 +1,21 @@
 import React from "react";
 import "./styles.css";
 import { SidebarOption } from "../components/";
-import { Button } from "@material-ui/core";
+
 import {
   AiOutlineHome,
   AiOutlineCompass,
   AiOutlineHistory,
+  AiOutlinePlus,
 } from "react-icons/ai";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
-import { useHistory } from "react-router-dom";
 
 function Sidebar() {
-  const history = useHistory();
-
-  const handleNewPostClick = () => {
-    history.push("/create");
-  };
-
   return (
     <div className="sidebar">
       <div className="sidebar__icon">
-        <h1>Education App!</h1>
+        <h1 className="main_title">Education App!</h1>
+        <h1 className="short_title">EA!</h1>
       </div>
 
       {/* Sidebar Options */}
@@ -32,16 +27,7 @@ function Sidebar() {
         path="/bookmarks"
       />
       <SidebarOption Icon={AiOutlineHistory} text="Activity" path="/activity" />
-
-      {/* Add Post Button */}
-      <Button
-        onClick={handleNewPostClick}
-        variant="outline"
-        fullWidth
-        className="sidebar_post_button"
-      >
-        Add Post
-      </Button>
+      <SidebarOption Icon={AiOutlinePlus} text="Add Post" path="/create" />
     </div>
   );
 }

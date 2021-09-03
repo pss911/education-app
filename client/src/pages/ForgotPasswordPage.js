@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import "./styles.css";
+import {
+  CustomTextField,
+  CustomButton,
+  AuthRedirectLink,
+  AuthError,
+} from "../components/";
 
 function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -36,24 +42,24 @@ function ForgotPasswordPage() {
   };
 
   return (
-    <div>
-      <form onSubmit={forgotPasswordHandler}>
-        <h3>Forgot Password</h3>
-        {error && <span>{error}</span>}
-        {success && <span>{success}</span>}
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            required
-            placeholder="Enter Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <button type="submit">Send Email</button>
-        <span>Remember your Password?</span> <Link to="/login">Login</Link>
+    <div className="forgotpassword">
+      <form className="forgotpassword__form" onSubmit={forgotPasswordHandler}>
+        <h3 className="forgotpassword__title">Forgot Password</h3>
+        {error && <AuthError error={error} />}
+        {success && <AuthError isError={false} error={success} />}
+        <CustomTextField
+          type="email"
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          size="small"
+          required
+          autoFocus
+        />
+        <CustomButton text="Send Email" />
+        <AuthRedirectLink path="/login" text="Remember your Password? Login" />
       </form>
     </div>
   );

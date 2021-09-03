@@ -2,6 +2,112 @@
 .createquizpage {
   display: flex;
   height: 100vh;
-  max-width: 1300px;
-  margin: 0 auto;
+  width: 100vw;
+  /* max-width: 1300px; */
+  /* margin: 0 auto; */
+}
+
+@media screen and (max-width: 970px) {
+  .sidebar {
+    flex: none !important;
+    min-width: 0px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 !important;
+  }
+
+  .feed {
+    flex: 1 !important;
+  }
+
+  .widgets {
+    display: none !important;
+  }
+
+  .sidebar__icon > h1.main_title {
+    display: none !important;
+  }
+
+  .sidebar__icon {
+    margin: 0 !important;
+  }
+
+  .sidebar__icon > h1.short_title {
+    display: block !important;
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+
+  .sidebar__icon > h1.short_title:hover {
+    background-color: var(--background-color);
+  }
+
+  .alt_add {
+    display: flex !important;
+  }
+
+  .sidebarOption {
+    height: fit-content !important;
+    width: fit-content !important;
+  }
+
+  .sidebarOption {
+    border-radius: 0 !important;
+    border-radius: 50% !important;
+  }
+
+  .sidebarOption > svg {
+    padding: 15px !important;
+  }
+
+  .sidebarOption > h2 {
+    display: none;
+  }
+}
+
+/* Login Page */
+.login,
+.register,
+.forgotpassword,
+.verify,
+.resetpassword {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__form,
+.register__form,
+.forgotpassword__form,
+.verify__form,
+.resetpassword__form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--background-color);
+  padding: 20px;
+  width: 250px;
+  border-radius: 5px;
+}
+
+.login__title,
+.register__title,
+.forgotpassword__title,
+.verify__title,
+.resetpassword__title {
+  margin-bottom: 15px;
+  color: var(--accent-color);
+}
+
+.register .MuiInputBase-root,
+.login .MuiInputBase-root,
+.forgotpassword .MuiInputBase-root,
+.verify .MuiInputBase-root,
+.resetpassword .MuiInputBase-root {
+  margin-bottom: 15px;
 }

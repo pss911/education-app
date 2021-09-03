@@ -8,7 +8,6 @@ import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import { FiMoreVertical } from "react-icons/fi";
-import { Avatar } from "@material-ui/core";
 
 function Post({
   id,
@@ -17,7 +16,6 @@ function Post({
   verified,
   timestamp,
   image,
-  avatar,
   likes,
   dislikes,
   liked,
@@ -26,9 +24,6 @@ function Post({
 }) {
   return (
     <div className="post">
-      <div className="post__avatar">
-        <Avatar src={avatar} />
-      </div>
       <div className="post__body">
         <div className="post__header">
           <div className="left">
