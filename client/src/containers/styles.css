@@ -43,3 +43,18 @@
   flex: 0.3;
   padding: 0 20px;
 }
+
+/* QuizQuestionEditor */
+.QuizCreatingPanel {
+  flex: 0.5;
+  overflow-y: scroll;
+}
+
+.QuizCreatingPanel::-webkit-scrollbar {
+  display: none;
+}
+
+.QuizCreatingPanel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -44,6 +44,9 @@ function ResetPasswordPage() {
       );
 
       setSuccess(data.data);
+      setTimeout(() => {
+        setSuccess("");
+      }, 5000);
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {

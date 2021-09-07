@@ -3,8 +3,6 @@
   display: flex;
   height: 100vh;
   width: 100vw;
-  /* max-width: 1300px; */
-  /* margin: 0 auto; */
 }
 
 @media screen and (max-width: 970px) {
@@ -17,7 +15,8 @@
     padding: 0 !important;
   }
 
-  .feed {
+  .feed,
+  .QuizCreatingPanel {
     flex: 1 !important;
   }
 

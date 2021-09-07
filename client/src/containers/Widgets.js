@@ -1,10 +1,11 @@
 import React from "react";
-import { SearchBar } from "../components";
+import { SearchBar, Widget } from "../components";
 
 function Widgets() {
   return (
     <div className="widgets">
       <SearchBar />
+      <Widget />
     </div>
   );
 }

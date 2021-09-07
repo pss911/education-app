@@ -15,6 +15,7 @@ function RegisterPage() {
   const [password, setPassword] = useState("");
   const [confirm_password, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -52,7 +53,13 @@ function RegisterPage() {
         config
       );
 
-      history.push("/login");
+      setSuccess(
+        "A Verification Email has been sent. You will be redirected to Login page in 5 Seconds. Please be sure to verify yourself before you login."
+      );
+      setTimeout(() => {
+        setSuccess("");
+        history.push("/login");
+      }, 5000);
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {
@@ -66,6 +73,7 @@ function RegisterPage() {
       <form className="register__form" onSubmit={registerHandler}>
         <h3 className="register__title">Register</h3>
         {error && <AuthError error={error} />}
+        {success && <AuthError isError={false} error={success} />}
         <CustomTextField
           type="text"
           id="outlined-basic"

@@ -212,12 +212,123 @@ span.timestamp {
 .login__error {
   margin-bottom: 15px;
   font-size: 14px;
-  background-color: var(--accent-color);
+  background-color: red;
   color: white;
   padding: 10px;
   border-radius: 5px;
 }
 
-.login__sucess {
-  background-color: chartreuse;
+.login__success {
+  margin-bottom: 15px;
+  font-size: 14px;
+  background-color: chartreuse !important;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* QuizQuestionEditor */
+.QuizQuestionEditor {
+  margin: 15px;
+}
+
+.QuizQuestionEditor__dragndrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.QuizQuestionEditor__dragndrop > img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Multiple Choice Answer Editor */
+.QuizQuestionEditor__answersBox {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.answer {
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.answer:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+
+.a1 {
+  background-color: #001524;
+}
+
+.a2 {
+  background-color: #15616d;
+}
+
+.a3 {
+  background-color: #78290f;
+}
+
+.a4 {
+  background-color: #ff7d00;
+}
+
+.answer-input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  color: white;
+  width: 90%;
+  height: 100%;
+  margin-left: 10px;
+}
+
+.answer-input::placeholder {
+  color: white;
+  opacity: 0.7; /* Firefox */
+}
+
+.answer-input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white;
+}
+
+.answer-input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: white;
+}
+
+/* True of false editor */
+.true {
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #242038;
+  color: white;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.false {
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #ef8354;
+  color: white;
+  font-size: 20px;
+}
+
+.true_or_false {
+  margin-right: 10px;
+}
+
+/* Input type Answer for Question Editor */
+.answer_input {
+  margin-top: 5px !important;
 }

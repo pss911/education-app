@@ -1,8 +1,13 @@
 import React from "react";
+import "./styles.css";
 
 function AuthError({ error, isError }) {
   return (
-    <span className={!isError ? "login__error login_success" : "login_error"}>
+    <span
+      className={
+        isError === false ? "login__error login__success" : "login__error"
+      }
+    >
       {error}
     </span>
   );
