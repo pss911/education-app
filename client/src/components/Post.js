@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-import { GoVerified } from "react-icons/go";
 import ThumbUpAltOutlinedIcon from "@material-ui/icons/ThumbUpAltOutlined";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltOutlinedIcon from "@material-ui/icons/ThumbDownAltOutlined";
@@ -13,7 +12,6 @@ function Post({
   id,
   username,
   description,
-  verified,
   timestamp,
   image,
   likes,
@@ -29,11 +27,6 @@ function Post({
           <div className="left">
             <div className="post__headerText">
               <h3>{username}</h3>
-              {verified ? (
-                <span>
-                  <GoVerified className="post__badge" />
-                </span>
-              ) : null}
               <h4 className="dot">•</h4>
               <h4 className="timestamp">{timestamp}</h4>
             </div>

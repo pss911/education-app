@@ -63,7 +63,6 @@ function ResetPasswordPage() {
         {success && <AuthError isError={false} error={success} />}
         <CustomTextField
           type="password"
-          id="outlined-basic"
           label="Password"
           variant="outlined"
           value={password}
@@ -74,7 +73,6 @@ function ResetPasswordPage() {
         />
         <CustomTextField
           type="password"
-          id="outlined-basic"
           label="Confirm Password"
           variant="outlined"
           value={confirm_password}

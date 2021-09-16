@@ -1,5 +1,6 @@
 /* Sidebar */
-.sidebar {
+.sidebar,
+.QuizDetailsPanel {
   border-right: 1px solid var(--background-color);
   flex: 0.2;
   padding-right: 20px;
@@ -46,7 +47,7 @@
 
 /* QuizQuestionEditor */
 .QuizCreatingPanel {
-  flex: 0.5;
+  flex: 0.6;
   overflow-y: scroll;
 }
 
@@ -57,4 +58,50 @@
 .QuizCreatingPanel {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Quiz Details Panel */
+.QuizDetailsPanel {
+  padding-top: 20px;
+}
+
+/* Quiz Details Panel*/
+.quizImage__dragndrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.quizImage__dragndrop > img {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid var(--background-color);
+}
+
+.quiz_title {
+  margin-bottom: 10px !important;
+}
+
+/* Question Details Panel */
+.QuestionDetailsPanel {
+  flex: 0.2;
+  padding: 20px;
+  border-left: 1px solid var(--background-color);
+}
+
+.save_or_dont {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 5px;
+  margin-top: 10px;
+}
+
+.question_type__selector {
+  margin-top: 10px;
 }

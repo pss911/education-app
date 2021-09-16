@@ -52,7 +52,6 @@ function ForgotPasswordPage() {
         {success && <AuthError isError={false} error={success} />}
         <CustomTextField
           type="email"
-          id="outlined-basic"
           label="Email"
           variant="outlined"
           value={email}

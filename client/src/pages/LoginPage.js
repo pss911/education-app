@@ -57,7 +57,6 @@ function LoginPage() {
         {error && <AuthError error={error} />}
         <CustomTextField
           type="email"
-          id="outlined-basic"
           label="Email"
           variant="outlined"
           value={email}
@@ -68,7 +67,6 @@ function LoginPage() {
         />
         <CustomTextField
           type="password"
-          id="outlined-basic"
           label="Password"
           variant="outlined"
           value={password}

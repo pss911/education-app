@@ -5,14 +5,28 @@
   width: 100vw;
 }
 
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 1000px) {
   .sidebar {
     flex: none !important;
-    min-width: 0px !important;
+    min-width: 0 !important;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 !important;
+  }
+
+  .QuizDetailsPanel {
+    flex: none;
+    max-width: 200px;
+    padding: 10px !important;
+    display: none;
+  }
+
+  .QuestionDetailsPanel {
+    flex: none;
+    max-width: 200px;
+    padding: 10px !important;
+    display: none;
   }
 
   .feed,

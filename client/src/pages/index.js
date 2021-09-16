@@ -1,4 +1,5 @@
 import HomePage from "./HomePage";
+import CreateQuizOriginalPage from "./CreateQuizOriginalPage";
 import CreateQuizPage from "./CreateQuizPage";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
@@ -9,6 +10,7 @@ import VerifyAccountPage from "./VerifyAccountPage";
 export {
   HomePage,
   CreateQuizPage,
+  CreateQuizOriginalPage,
   LoginPage,
   RegisterPage,
   ForgotPasswordPage,

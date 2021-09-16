@@ -7,7 +7,6 @@ function InputAnswerQuestionEditor({ answer, setAnswer }) {
       <h3 className="input_answer_title">Answer:</h3>
       <CustomTextField
         type="text"
-        id="outlined-basic"
         label="Answer"
         variant="outlined"
         value={answer}

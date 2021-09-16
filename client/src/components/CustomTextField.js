@@ -1,8 +1,7 @@
 import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 
-const accentColor = "#4C8BF4";
-const backgroundColor = "#e7e7e8";
+import { accentColor, backgroundColor } from "../colors.json";
 
 const CustonTextField = withStyles({
   root: {

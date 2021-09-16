@@ -76,7 +76,6 @@ function RegisterPage() {
         {success && <AuthError isError={false} error={success} />}
         <CustomTextField
           type="text"
-          id="outlined-basic"
           label="Username"
           variant="outlined"
           value={username}
@@ -87,7 +86,6 @@ function RegisterPage() {
         />
         <CustomTextField
           type="email"
-          id="outlined-basic"
           label="Email"
           variant="outlined"
           value={email}
@@ -97,7 +95,6 @@ function RegisterPage() {
         />
         <CustomTextField
           type="password"
-          id="outlined-basic"
           label="Password"
           variant="outlined"
           value={password}
@@ -107,7 +104,6 @@ function RegisterPage() {
         />
         <CustomTextField
           type="password"
-          id="outlined-basic"
           label="Confirm Password"
           variant="outlined"
           value={confirm_password}

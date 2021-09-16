@@ -188,14 +188,14 @@ span.timestamp {
 
 /* Custom Button */
 .custom_button .MuiButtonBase-root {
-  margin-bottom: 10px;
+  margin-bottom: 10px !important;
   background-color: var(--accent-color);
   color: white;
   border-radius: 5px;
 }
 
 .custom_button .noMargin {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 .custom_button .MuiButtonBase-root:hover {
