@@ -332,3 +332,143 @@ span.timestamp {
 .answer_input {
   margin-top: 5px !important;
 }
+
+/* Toast */
+.notification-container {
+  font-size: 14px;
+  position: fixed;
+  z-index: 9999;
+}
+
+.top-right {
+  animation: toast-in-right 0.7s;
+  top: 12px;
+  right: 12px;
+}
+
+.bottom-right {
+  animation: toast-in-right 0.7s;
+  bottom: 12px;
+  right: 12px;
+}
+
+.top-left {
+  animation: toast-in-left 0.7s;
+  top: 12px;
+  left: 12px;
+}
+
+.bottom-left {
+  animation: toast-in-left 0.7s;
+  bottom: 12px;
+  left: 12px;
+}
+
+.notification {
+  background: #fff;
+  transition: 0.3s ease;
+  position: relative;
+  pointer-events: auto;
+  overflow: hidden;
+  margin: 0 0 6px;
+  padding: 20px;
+  margin-bottom: 15px;
+  width: 300px;
+  max-height: 100px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px #999;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.notification:hover {
+  box-shadow: 0 0 12px #fff;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.notification-title {
+  font-weight: 700;
+  font-size: 16px;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 6px;
+  width: 300px;
+  height: 18px;
+}
+
+.notification-message {
+  margin: 0;
+  text-align: left;
+  height: 18px;
+  margin-left: -1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notification-img > .MuiSvgIcon-root {
+  float: left;
+  margin-right: 15px;
+  font-size: 36px;
+}
+
+@keyframes toast-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+}
+
+/* Loader */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader > .circle {
+  display: inline-block;
+  background-color: var(--accent-color);
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  margin: 0 8px;
+  transform: translate3d(0);
+  animation: bounce 0.6s infinite alternate;
+}
+
+.loader > .circle:nth-child(2) {
+  background-color: var(--background-color);
+  animation-delay: 0.2s;
+}
+
+.loader > .circle:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  to {
+    width: 16px;
+    height: 16px;
+    transform: translate3d(0, -16px, 0);
+  }
+}

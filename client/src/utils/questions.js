@@ -6,6 +6,7 @@ const createQuestion = (setQuestionNumbers, setQuestions) => {
       {
         question: "",
         questionType: 0,
+        imageUrl: "",
         answers: {
           answer1: "",
           answer2: "",

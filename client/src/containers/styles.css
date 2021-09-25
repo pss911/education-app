@@ -65,7 +65,6 @@
   padding-top: 20px;
 }
 
-/* Quiz Details Panel*/
 .quizImage__dragndrop {
   display: flex;
   align-items: center;
@@ -88,6 +87,10 @@
   margin-bottom: 10px !important;
 }
 
+.quiz_type {
+  margin-bottom: 10px;
+}
+
 /* Question Details Panel */
 .QuestionDetailsPanel {
   flex: 0.2;
@@ -95,10 +98,7 @@
   border-left: 1px solid var(--background-color);
 }
 
-.save_or_dont {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-column-gap: 5px;
+.delete {
   margin-top: 10px;
 }
 

@@ -18,13 +18,15 @@ const QuizSchema = new mongoose.Schema(
         "The description of the quiz cannot be any longer than 512 characters.",
       ],
     },
+    type: {
+      type: Number,
+      default: 0,
+    },
     imageUrl: {
       type: String,
       default: undefined,
     },
     questions: [Question],
-    likes: Number,
-    dislikes: Number,
   },
   { collection: "Quizzes" }
 );

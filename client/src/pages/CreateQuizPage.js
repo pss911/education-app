@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./styles.css";
 import {
   QuizCreatingPanel,
   QuizDetailsPanel,
   QuestionDetailsPanel,
 } from "../containers";
-import { createQuestion } from "../utils/questions";
+import { createQuestion, deleteQuestion } from "../utils/questions";
 import { useParams } from "react-router";
+import { Toast, Loader } from "../components";
+import { DbContext } from "../contexts/dbContext";
 
 function CreateQuizPage() {
   const params = useParams();
+  const db = useContext(DbContext);
   const [quiz, setQuiz] = useState();
   const [quizName, setQuizName] = useState("");
   const [quizDescription, setQuizDescription] = useState("");
@@ -18,29 +21,26 @@ function CreateQuizPage() {
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [questionType, setQuestionType] = useState(0);
-
-  useEffect(() => {
-    if (params.draftId) {
-      const quizzes = JSON.parse(localStorage.getItem("Drafts"));
-      const currentQuiz = quizzes.filter((v) => {
-        return v.tempID === params.draftId;
-      })[0];
-      setQuiz(currentQuiz);
-    }
-  }, [params]);
+  const [quizType, setQuizType] = useState(0);
+  const [quizLoaded, setQuizLoaded] = useState(false);
 
   useEffect(() => {
     if (quiz) {
-      setQuizName(quiz.name);
-      setQuizDescription(quiz.description);
+      setQuizLoaded(true);
+      setQuizName(quiz.name ? quiz.name : "");
+      setQuizDescription(quiz.description ? quiz.description : "");
+      setQuizType(quiz.type ? quiz.type : 0);
+      setQuizImage(quiz.imageUrl ? [quiz.imageUrl] : []);
+      setQuestions(quiz.questions ? quiz.questions : []);
     }
   }, [quiz]);
 
   useEffect(() => {
-    if (questions[0]) {
+    if (questions[currentQuestionNumber]) {
+      setQuestions(questions);
       setQuestionType(questions[currentQuestionNumber].questionType);
     }
-  }, [currentQuestionNumber, questions]);
+  }, [currentQuestionNumber]);
 
   useEffect(() => {
     if (questions[0]) {
@@ -52,12 +52,49 @@ function CreateQuizPage() {
   }, [questionType]);
 
   useEffect(() => {
-    createQuestion(setQuestionNumbers, setQuestions);
-  }, []);
+    if (quiz) {
+      setQuiz({
+        ...quiz,
+        name: quizName,
+        type: quizType,
+        description: quizDescription,
+      });
+    }
+  }, [quizName, quizDescription, quizType]);
+
+  useEffect(() => {
+    if (quizImage[0]) {
+      setQuiz((prevStateQuiz) => {
+        prevStateQuiz.imageUrl = quizImage[0];
+        return prevStateQuiz;
+      });
+    }
+  }, [quizImage]);
+
+  useEffect(() => {
+    let unmounted = false;
+    if (params.draftId) {
+      if (!quiz && !unmounted) {
+        (async () => {
+          const res = await db.collection("drafts").doc(params.draftId).get();
+          setQuiz(res);
+        })();
+      }
+    }
+
+    return () => {
+      unmounted = true;
+    };
+  }, [params, quiz]);
+
+  const saveQuizToLocalDB = () => {
+    db.collection("drafts").doc(params.draftId).set(quiz);
+  };
 
   return (
     <>
-      {params.draftId && (
+      <Toast position="bottom-right" autoDeleteInterval={2000} />
+      {quizLoaded ? (
         <div className="createquizpage">
           {/* Quiz Details Panel */}
           <QuizDetailsPanel
@@ -65,24 +102,48 @@ function CreateQuizPage() {
             setQuizName={setQuizName}
             quizDescription={quizDescription}
             setQuizDescription={setQuizDescription}
-            files={quizImage}
-            setFiles={setQuizImage}
+            quizImage={quizImage}
+            setQuizImage={setQuizImage}
+            createQuestion={() =>
+              createQuestion(setQuestionNumbers, setQuestions)
+            }
+            saveQuizToLocalDB={saveQuizToLocalDB}
+            questionNumbers={questionNumbers}
+            setCurrentQuestionNumber={setCurrentQuestionNumber}
+            quizType={quizType}
+            setQuizType={setQuizType}
           />
           {/* Create Quiz Panel */}
           <QuizCreatingPanel
+            setQuiz={setQuiz}
             currentQuestionNumber={currentQuestionNumber}
             questions={questions}
             setQuestions={setQuestions}
             questionType={questionType}
+            setQuestionType={setQuestionType}
+            setQuestionNumbers={setQuestionNumbers}
           />
           {/* Quiz Details Panel*/}
           <QuestionDetailsPanel
+            questions={questions}
+            currentQuestionNumber={currentQuestionNumber}
             questionNumbers={questionNumbers}
             setCurrentQuestionNumber={setCurrentQuestionNumber}
             questionType={questionType}
             setQuestionType={setQuestionType}
+            deleteQuestion={() => {
+              deleteQuestion(
+                currentQuestionNumber,
+                setQuestionNumbers,
+                setQuestions
+              );
+            }}
           />
         </div>
+      ) : (
+        <>
+          <Loader waitFor={3000} />
+        </>
       )}
     </>
   );

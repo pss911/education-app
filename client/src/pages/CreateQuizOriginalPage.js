@@ -1,28 +1,24 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import { v4 as uuidv4 } from "uuid";
+import { DbContext } from "../contexts/dbContext";
 
 function CreateQuizOriginalPage() {
   const history = useHistory();
+  const db = useContext(DbContext);
 
   useEffect(() => {
     const uuid = uuidv4();
     const quiz = {
       name: "",
       description: "",
-      tempID: uuid,
+      type: 0,
       imageUrl: "",
-      questionCount: 0,
       questions: [],
     };
-    const quizzes = JSON.parse(localStorage.getItem("Drafts"));
-    if (quizzes) {
-      localStorage.setItem("Drafts", JSON.stringify([...quizzes, quiz]));
-    } else {
-      localStorage.setItem("Drafts", JSON.stringify([quiz]));
-    }
-    history.push(`/drafts/${uuid}`);
-  }, []);
+    db.collection("drafts").add(quiz, uuid);
+    history.replace(`/drafts/${uuid}`);
+  }, [db, history]);
 
   return null;
 }

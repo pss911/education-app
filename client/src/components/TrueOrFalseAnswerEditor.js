@@ -16,14 +16,14 @@ function TrueOrFalseAnswerEditor({
           return arr;
         });
       }
-  }, [trueOrFalse]);
+  }, [trueOrFalse, currentQuestionNumber, questions, setQuestions]);
 
   useEffect(() => {
     if (questions)
       if (questions[0]) {
         setTrueOrFalse(questions[currentQuestionNumber].true_or_false);
       }
-  }, [currentQuestionNumber, questions]);
+  }, [currentQuestionNumber, questions, setTrueOrFalse]);
 
   return (
     <div className="QuizQuestionEditor__answersBox">

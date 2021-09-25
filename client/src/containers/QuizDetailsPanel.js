@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useDropzone } from "react-dropzone";
-import { CustomTextField } from "../components";
+import { Autocomplete } from "@material-ui/lab";
+import { v4 } from "uuid";
+import { CustomButton, CustomTextField } from "../components";
+import { ACTIONS, ToastContext, TYPES } from "../contexts/toastContext";
 import { getBase64 } from "../utils/image";
 
 function QuizDetailsPanel({
@@ -8,19 +11,29 @@ function QuizDetailsPanel({
   setQuizName,
   quizDescription,
   setQuizDescription,
-  files,
-  setFiles,
+  quizImage,
+  setQuizImage,
+  createQuestion,
+  saveQuizToLocalDB,
+  questionNumbers,
+  setCurrentQuestionNumber,
+  quizType,
+  setQuizType,
 }) {
+  const { dispatch } = useContext(ToastContext);
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
       acceptedFiles.map((file) =>
         getBase64(file, (result) => {
-          setFiles([result]);
+          setQuizImage([result]);
         })
       );
     },
   });
+
+  const typeOption = ["Quiz Type", "Survey Type"];
 
   return (
     <div className="QuizDetailsPanel">
@@ -50,8 +63,8 @@ function QuizDetailsPanel({
       />
 
       <div className="quizImage__dragndrop" {...getRootProps()}>
-        {files[0] ? (
-          <img src={files[0]} alt="preview" />
+        {quizImage && quizImage[0] ? (
+          <img src={quizImage[0]} alt="preview" />
         ) : (
           <img
             src="https://image.flaticon.com/icons/png/512/4814/4814775.png"
@@ -60,6 +73,55 @@ function QuizDetailsPanel({
         )}
         <input {...getInputProps()} />
       </div>
+
+      <Autocomplete
+        value={typeOption[quizType]}
+        options={typeOption}
+        onChange={(e, v) => setQuizType(typeOption.indexOf(v))}
+        getOptionLabel={(option) => option}
+        style={{ width: "100%" }}
+        renderInput={(params) => (
+          <CustomTextField {...params} label="Quiz Type" variant="outlined" />
+        )}
+        disableClearable={true}
+        className="quiz_type"
+      />
+
+      <CustomButton
+        text="Add Question"
+        notSubmit
+        onClick={() => {
+          createQuestion();
+          dispatch({
+            type: ACTIONS.ADD,
+            payload: {
+              id: v4(),
+              type: TYPES.INFO,
+              title: "Added New Question",
+              message: `Question ${questionNumbers.length + 1} has been added.`,
+            },
+          });
+          setCurrentQuestionNumber(questionNumbers.length);
+        }}
+      />
+
+      <CustomButton
+        text="Save Quiz"
+        notSubmit
+        onClick={() => {
+          saveQuizToLocalDB();
+          dispatch({
+            type: ACTIONS.ADD,
+            payload: {
+              id: v4(),
+              type: TYPES.SUCCESS,
+              title: "Saved Successfully",
+              message: `Your quiz has been saved locally. `,
+            },
+          });
+        }}
+      />
+      <CustomButton text="Publish Quiz" notSubmit />
     </div>
   );
 }

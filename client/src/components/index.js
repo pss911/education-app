@@ -11,6 +11,8 @@ import MultipleChoiceAnswersEditor from "./MultipleChoiceAnswersEditor";
 import TrueOrFalseAnswerEditor from "./TrueOrFalseAnswerEditor";
 import InputAnswerQuestionEditor from "./InputAnswerQuestionEditor";
 import Widget from "./Widget";
+import Toast from "./Toast";
+import Loader from "./Loader";
 
 export {
   SidebarOption,
@@ -26,4 +28,6 @@ export {
   TrueOrFalseAnswerEditor,
   InputAnswerQuestionEditor,
   Widget,
+  Toast,
+  Loader,
 };

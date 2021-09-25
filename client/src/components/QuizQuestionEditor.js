@@ -13,6 +13,9 @@ function QuizQuestionEditor({
   setQuestions,
   questions,
   questionType,
+  setQuiz,
+  setQuestionType,
+  setQuestionNumbers,
 }) {
   const [files, setFiles] = useState([]);
 
@@ -51,25 +54,53 @@ function QuizQuestionEditor({
           ...existingQuestions[currentQuestionNumber],
           question,
           answers,
+          imageUrl: files[0],
           correct_answer: correct,
           true_or_false: trueOrFalse,
           input: answer,
         };
 
+        setQuiz((quiz) => {
+          if (quiz) {
+            quiz.questions = questions;
+            return quiz;
+          }
+        });
+
         return existingQuestions;
       });
     }
-  }, [question, answers, correct, trueOrFalse, answer]);
+  }, [
+    question,
+    answers,
+    correct,
+    trueOrFalse,
+    answer,
+    files,
+    currentQuestionNumber,
+    questions,
+    setQuestions,
+    setQuiz,
+  ]);
 
   useEffect(() => {
-    if (questions[0]) {
+    if (questions[currentQuestionNumber]) {
       setQuestion(questions[currentQuestionNumber].question);
+      setQuestionNumbers(() => {
+        const questionNumbersArray = [];
+        for (let i = 1; i <= questions.length; i++) {
+          questionNumbersArray.push(`Question ${i}`);
+        }
+        return questionNumbersArray;
+      });
       setAnswers(questions[currentQuestionNumber].answers);
       setCorrect(questions[currentQuestionNumber].correct_answer);
       setTrueOrFalse(questions[currentQuestionNumber].true_or_false);
       setAnswer(questions[currentQuestionNumber].input);
+      setFiles([questions[currentQuestionNumber].imageUrl]);
+      setQuestionType(questions[currentQuestionNumber].questionType);
     }
-  }, [currentQuestionNumber]);
+  }, [questions, currentQuestionNumber, setQuestionNumbers, setQuestionType]);
 
   return (
     <div className="QuizQuestionEditor">
