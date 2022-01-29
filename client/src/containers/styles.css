@@ -17,6 +17,7 @@
   font-size: 25px;
   margin-left: 20px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .sidebar__icon > h1.short_title {
@@ -63,6 +64,16 @@
 /* Quiz Details Panel */
 .QuizDetailsPanel {
   padding-top: 20px;
+  overflow-y: scroll;
+}
+
+.QuizDetailsPanel::-webkit-scrollbar {
+  display: none;
+}
+
+.QuizDetailsPanel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .quizImage__dragndrop {

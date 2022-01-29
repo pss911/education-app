@@ -19,6 +19,10 @@ const QuestionSchema = new mongoose.Schema({
     type: String,
     default: undefined,
   },
+  imageId: {
+    type: String,
+    default: undefined,
+  },
 });
 
-export default QuestionSchema;
+module.exports = QuestionSchema;

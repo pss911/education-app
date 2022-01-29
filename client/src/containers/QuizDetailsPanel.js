@@ -19,17 +19,18 @@ function QuizDetailsPanel({
   setCurrentQuestionNumber,
   quizType,
   setQuizType,
+  saveQuizToDB,
 }) {
   const { dispatch } = useContext(ToastContext);
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
-      acceptedFiles.map((file) =>
+      acceptedFiles.map((file) => {
         getBase64(file, (result) => {
           setQuizImage([result]);
-        })
-      );
+        });
+      });
     },
   });
 
@@ -121,7 +122,11 @@ function QuizDetailsPanel({
           });
         }}
       />
-      <CustomButton text="Publish Quiz" notSubmit />
+      <CustomButton
+        text="Publish Quiz"
+        notSubmit
+        onClick={(e) => saveQuizToDB()}
+      />
     </div>
   );
 }

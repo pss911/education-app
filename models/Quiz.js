@@ -26,9 +26,13 @@ const QuizSchema = new mongoose.Schema(
       type: String,
       default: undefined,
     },
+    imageId: {
+      type: String,
+      default: undefined,
+    },
     questions: [Question],
   },
-  { collection: "Quizzes" }
+  { collection: "quizzes" }
 );
 
 const Quiz = mongoose.model("Quiz", QuizSchema);

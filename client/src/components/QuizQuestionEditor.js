@@ -48,7 +48,7 @@ function QuizQuestionEditor({
   });
 
   useEffect(() => {
-    if (questions[0]) {
+    if (question[currentQuestionNumber]) {
       setQuestions((existingQuestions) => {
         existingQuestions[currentQuestionNumber] = {
           ...existingQuestions[currentQuestionNumber],

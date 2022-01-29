@@ -10,7 +10,7 @@ function TrueOrFalseAnswerEditor({
 }) {
   useEffect(() => {
     if (questions)
-      if (questions[0]) {
+      if (questions[currentQuestionNumber]) {
         setQuestions((arr) => {
           arr[currentQuestionNumber].true_or_false = trueOrFalse;
           return arr;
@@ -20,7 +20,7 @@ function TrueOrFalseAnswerEditor({
 
   useEffect(() => {
     if (questions)
-      if (questions[0]) {
+      if (questions[currentQuestionNumber]) {
         setTrueOrFalse(questions[currentQuestionNumber].true_or_false);
       }
   }, [currentQuestionNumber, questions, setTrueOrFalse]);

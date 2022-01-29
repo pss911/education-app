@@ -6,7 +6,7 @@ function SearchBar() {
   return (
     <div className="searchbar">
       <AiOutlineSearch className="searchbar__icon" />
-      <input placeholder="Search Education App!" type="text" />
+      <input placeholder="Search Study Ship" type="text" />
     </div>
   );
 }

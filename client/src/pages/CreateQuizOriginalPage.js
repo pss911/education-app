@@ -14,6 +14,7 @@ function CreateQuizOriginalPage() {
       description: "",
       type: 0,
       imageUrl: "",
+      imageId: "",
       questions: [],
     };
     db.collection("drafts").add(quiz, uuid);

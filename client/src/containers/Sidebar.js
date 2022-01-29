@@ -14,8 +14,8 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar__icon">
-        <h1 className="main_title">Education App!</h1>
-        <h1 className="short_title">EA!</h1>
+        <h1 className="main_title">Study Ship!</h1>
+        <h1 className="short_title">SS</h1>
       </div>
 
       {/* Sidebar Options */}
